@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AZMBL | COMMUNITY</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --neon-blue: #0ff0fc;
+            --neon-purple: #9600ff;
+            --dark-bg: #0a0a12;
+            --darker-bg: #050508;
+            --card-bg: #11111a;
+            --text-light: #e0e0e0;
+            --text-dim: #a0a0a0;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .cyber-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Cyber Header */
+        .cyber-header {
+            background-color: var(--darker-bg);
+            border-bottom: 1px solid rgba(15, 240, 252, 0.1);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .cyber-header.scrolled {
+            padding: 10px 0;
+            background-color: rgba(5, 5, 8, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .cyber-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cyber-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--neon-blue);
+            text-decoration: none;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .cyber-logo span {
+            color: var(--neon-purple);
+        }
+        
+        .cyber-logo i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .cyber-menu {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .cyber-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .cyber-menu a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .cyber-menu a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--neon-blue);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Cyber Hero */
+        .cyber-hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(to bottom, var(--darker-bg), var(--dark-bg));
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cyber-hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(15, 240, 252, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(150, 0, 255, 0.05) 0%, transparent 50%);
+        }
+        
+        .cyber-hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+        
+        .cyber-hero p {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .cyber-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+            border-radius: 4px;
+            font-family: 'Orbitron', sans-serif;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .cyber-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(15, 240, 252, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .cyber-btn:hover:before {
+            left: 100%;
+        }
+        
+        .cyber-btn-primary {
+            background: var(--neon-blue);
+            color: var(--darker-bg);
+            box-shadow: 0 0 15px rgba(15, 240, 252, 0.5);
+        }
+        
+        .cyber-btn-primary:hover {
+            box-shadow: 0 0 25px rgba(15, 240, 252, 0.8);
+        }
+        
+        /* Cyber Grid */
+        .cyber-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 80px 0;
+        }
+        
+        .cyber-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(15, 240, 252, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cyber-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(135deg, rgba(15, 240, 252, 0.03) 0%, transparent 50%),
+                linear-gradient(315deg, rgba(150, 0, 255, 0.03) 0%, transparent 50%);
+        }
+        
+        .cyber-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(15, 240, 252, 0.1);
+            border-color: rgba(15, 240, 252, 0.3);
+        }
+        
+        .cyber-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-blue);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .cyber-card p {
+            color: var(--text-dim);
+            margin-bottom: 20px;
+        }
+        
+        .cyber-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--neon-purple);
+        }
+        
+        /* Projects Section */
+        .cyber-projects {
+            padding: 80px 0;
+            background: var(--darker-bg);
+            border-top: 1px solid rgba(15, 240, 252, 0.1);
+            border-bottom: 1px solid rgba(15, 240, 252, 0.1);
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(15, 240, 252, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(15, 240, 252, 0.1);
+        }
+        
+        .project-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .project-status {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(5, 5, 8, 0.8);
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-blue);
+            font-size: 0.9rem;
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-title {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-blue);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+        
+        /* Resources Section */
+        .resources-section {
+            padding: 80px 0;
+            background: var(--darker-bg);
+        }
+
+        .resource-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(15, 240, 252, 0.1);
+        }
+
+        .resource-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            color: var(--text-dim);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .resource-tab.active {
+            color: var(--neon-blue);
+        }
+
+        .resource-tab.active:after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--neon-blue);
+        }
+
+        .resource-tab-content {
+            display: none;
+        }
+
+        .resource-tab-content.active {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .resource-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            border: 1px solid rgba(15, 240, 252, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(15, 240, 252, 0.03) 0%, transparent 50%);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(15, 240, 252, 0.1);
+            border-color: rgba(15, 240, 252, 0.3);
+        }
+
+        .resource-type {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: var(--neon-purple);
+        }
+
+        .resource-title {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-blue);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            padding-right: 30px;
+        }
+
+        .resource-description {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .resource-link {
+            display: inline-block;
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .resource-link:hover {
+            text-decoration: underline;
+        }
+
+        .resource-link i {
+            margin-left: 5px;
+        }
+        
+        /* Connect With Us Section */
+        .connect-section {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(to right, var(--darker-bg), var(--dark-bg));
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .social-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 240, 252, 0.05);
+            border: 1px solid rgba(15, 240, 252, 0.1);
+            color: var(--neon-blue);
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: rgba(15, 240, 252, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(15, 240, 252, 0.2);
+        }
+        
+        .social-icon.discord:hover {
+            color: #5865F2;
+            border-color: #5865F2;
+        }
+        
+        .social-icon.twitter:hover {
+            color: #1DA1F2;
+            border-color: #1DA1F2;
+        }
+        
+        .social-icon.github:hover {
+            color: #f0f6fc;
+            border-color: #f0f6fc;
+        }
+        
+        .social-icon.linkedin:hover {
+            color: #0A66C2;
+            border-color: #0A66C2;
+        }
+        
+        .social-icon.youtube:hover {
+            color: #FF0000;
+            border-color: #FF0000;
+        }
+        
+        .social-icon.instagram:hover {
+            color: #E1306C;
+            border-color: #E1306C;
+        }
+        
+        /* Newsletter */
+        .cyber-newsletter {
+            padding: 80px 0;
+            background: var(--darker-bg);
+            text-align: center;
+        }
+        
+        .newsletter-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            min-width: 300px;
+            padding: 15px;
+            background: var(--card-bg);
+            border: 1px solid rgba(15, 240, 252, 0.1);
+            color: var(--text-light);
+            font-family: 'Roboto', sans-serif;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+        
+        .newsletter-input:focus {
+            border-color: var(--neon-blue);
+        }
+        
+        .newsletter-btn {
+            padding: 15px 30px;
+            background: var(--neon-blue);
+            color: var(--darker-bg);
+            border: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-btn:hover {
+            background: var(--neon-purple);
+            color: var(--text-light);
+        }
+        
+        /* Cyber Footer */
+        .cyber-footer {
+            background-color: var(--darker-bg);
+            padding: 50px 0 20px;
+            border-top: 1px solid rgba(15, 240, 252, 0.1);
+        }
+        
+        .cyber-footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .cyber-footer h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-blue);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .cyber-footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .cyber-footer ul li {
+            margin-bottom: 10px;
+        }
+        
+        .cyber-footer ul li a {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .cyber-footer ul li a:hover {
+            color: var(--neon-blue);
+        }
+        
+        .cyber-social {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .cyber-social a {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 240, 252, 0.05);
+        }
+        
+        .cyber-social a:hover {
+            color: var(--neon-blue);
+            background: rgba(15, 240, 252, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .cyber-copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(15, 240, 252, 0.1);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--neon-blue);
+            color: var(--darker-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--neon-purple);
+            color: var(--text-light);
+            transform: translateY(-5px);
+        }
+        
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--card-bg);
+            border: 1px solid rgba(15, 240, 252, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 999;
+            color: var(--text-light);
+        }
+        
+        .dark-mode-toggle:hover {
+            border-color: var(--neon-blue);
+            color: var(--neon-blue);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .cyber-menu {
+                gap: 20px;
+            }
+            
+            .cyber-hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .cyber-menu {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--darker-bg);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 15px;
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                border-bottom: 1px solid rgba(15, 240, 252, 0.1);
+            }
+            
+            .cyber-menu.active {
+                transform: translateY(0);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .cyber-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .cyber-hero p {
+                font-size: 1rem;
+            }
+            
+            .cyber-btn {
+                margin: 5px;
+                padding: 10px 20px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input {
+                border-radius: 4px;
+                margin-bottom: 10px;
+            }
+            
+            .newsletter-btn {
+                border-radius: 4px;
+            }
+            
+            .social-icons {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .social-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .cyber-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        .resource-actions {
+    display: flex;
+    margin-top: 15px;
+}
+
+.resource-actions .cyber-btn {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+.resource-actions .cyber-btn i {
+    margin-right: 5px;
+}
+    </style>
+</head>
+<body>
+    <!-- Cyber Header -->
+    <header class="cyber-header" id="header">
+        <div class="cyber-container">
+            <nav class="cyber-nav">
+                <a href="#" class="cyber-logo"><i class="fas fa-code"></i>AZMBL<span></span></a>
+                <div class="cyber-menu" id="mainMenu">
+                    <a href="#home">HOME</a>
+                    <a href="#topics">TOPICS</a>
+                    <a href="#projects">PROJECTS</a>
+                    <a href="resources.html">RESOURCES</a>
+                    <a href="#connect">CONNECT</a>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Cyber Hero -->
+    <section class="cyber-hero" id="home">
+        <div class="cyber-container">
+            <h1>CONNECT. LEARN. INNOVATE.</h1>
+            <p>Join the premier tech community for ethical hackers, developers, and innovators pushing the boundaries of technology.</p>
+            <div>
+                <a href="#connect" class="cyber-btn cyber-btn-primary">Join Now</a>
+                <a href="#topics" class="cyber-btn">Explore Topics</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cyber Grid -->
+    <section class="cyber-container" id="topics">
+        <div class="cyber-grid">
+            <div class="cyber-card">
+                <div class="cyber-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Ethical Hacking</h3>
+                <p>For legal and educational purposes only. Master cybersecurity and penetration testing with our community experts.</p>
+            </div>
+            
+            <div class="cyber-card">
+                <div class="cyber-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3>Web & Dev</h3>
+                <p>From frontend to backend, learn modern development techniques and collaborate on projects.</p> 
+            </div>
+            
+            <div class="cyber-card">
+                <div class="cyber-icon"><i class="fas fa-brain"></i></div>
+                <h3>Tech Trends</h3>
+                <p>Stay ahead with discussions on AI, blockchain, quantum computing and emerging technologies.</p>
+            </div>
+            
+            <div class="cyber-card">
+                <div class="cyber-icon"><i class="fas fa-rocket"></i></div>
+                <h3>Startups</h3>
+                <p>From idea to IPO. Connect with founders, investors, and mentors in our startup ecosystem.</p>
+            </div>
+            
+            <div class="cyber-card">
+                <div class="cyber-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                <h3>Crowdfunding</h3>
+                <p>Learn successful strategies and get support for your tech projects and startup ideas.</p>
+            </div>
+            
+            <div class="cyber-card">
+                <div class="cyber-icon"><i class="fas fa-tools"></i></div>
+                <h3>Dev Tools</h3>
+                <p>Share and discover the best tools, extensions, and productivity hacks for developers.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="cyber-projects" id="projects">
+        <div class="cyber-container">
+            <h2 class="section-title">FEATURED PROJECTS</h2>
+            <div class="projects-grid">
+                
+                <div class="project-card">
+    <div class="project-image" style="background-image: url('https://github.com/aadhilm/Web-Os-CR42/blob/main/Retro.png?raw=true');">
+        <div class="project-status">Active Development</div>
+    </div>
+    <div class="project-content">
+        <h3 class="project-title">Web-based Operating System Simulation</h3>
+        <div class="project-meta">
+            <span><i class="fas fa-code-branch"></i> Open Source</span>
+        </div>
+        <p>Browser-based simulation of a operating system with dual boot capabilities and multiple interface modes [retro - linux].</p>
+        <div class="project-buttons">
+            <a href="https://github.com/aadhilm/Web-Os-CR42" class="cyber-btn">View Project</a>
+            <a href="https://aadhilm.github.io/Web-Os-CR42/" class="cyber-btn live-btn" style="margin-left: 10px; padding: 6px 10px; font-size: 0.85rem; background-color: #2890a7;">Live</a>
+        </div>
+    </div>
+</div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://github.com/aadhilm/TERMINAL-TOOLS/blob/eeea79b29e223103196368e0866f4592a362481b/terminal-tools.png?raw=true');">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">TERMINAL-TOOLS</h3>
+                        <div class="project-meta">
+                            <span><i class="fas fa-code-branch"></i> Open Source</span>
+                        </div>
+                        <p> Menu-Based Bash Script that Serves as a System Utilities and Fun Features into a Single Interactive Interface.</p>
+                        <a href="#" class="cyber-btn">View Project</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://github.com/aadhilm/RustScanner/blob/main/RustScanner.png?raw=true');">
+                        <div class="project-status">Stable Release</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">RustScanner</h3>
+                        <div class="project-meta">
+                            <span><i class="fas fa-code-branch"></i> Open Source</span>
+                        </div>
+                        <p>RustScanner is a Python-based network reconnaissance toolkit with web interface and visual traffic analysis. Designed for penetration testers, sysadmins, and security researchers.</p>
+                        <a href="#" class="cyber-btn">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Resources Section -->
+<section class="resources-section cyber-container" id="resources">
+    <h2 class="section-title">COMMUNITY RESOURCES</h2>
+    <div class="resource-tabs">
+        <div class="resource-tab active" data-tab="learning">FREE COURSES</div>
+        <div class="resource-tab" data-tab="tools">BOOKS</div>
+        <div class="resource-tab" data-tab="security">ROADMAP</div>
+    </div>
+    
+    <div class="resource-tab-content active" id="learning">
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+            <h3 class="resource-title">FreeCodeCamp Curriculum</h3>
+            <p class="resource-description">3000+ hours of content covering JavaScript, Python, C++, SQL, Bash, HTML/CSS with certifications.</p>
+            <div class="resource-actions">
+                <a href="https://www.freecodecamp.org/learn/" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-external-link-alt"></i> Access Course
+                </a>
+            </div>
+        </div>
+        
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+            <h3 class="resource-title">Coursera Free Courses</h3>
+            <p class="resource-description">Explore free courses from top universities and companies with certificates.</p>
+            <div class="resource-actions">
+                <a href="https://www.coursera.org/courses?query=free" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-external-link-alt"></i> Access Courses
+                </a>
+            </div>
+        </div>
+        
+        <div class="resource-card">
+    <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+    <h3 class="resource-title">Coursera</h3>
+    <p class="resource-description">Top university & company courses with free and paid options.</p>
+    <div class="resource-actions">
+        <a href="https://www.coursera.org/?utm_source=chatgpt.com" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> Visit Coursera
+        </a>
+        <a href="https://www.coursera.org/courses?query=free&utm_source=chatgpt.com" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> Free Courses
+        </a>
+    </div>
+</div>
+
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+    <h3 class="resource-title">Alison</h3>
+    <p class="resource-description">Free online courses with certifications to upskill and reskill.</p>
+    <div class="resource-actions">
+        <a href="https://alison.com/?utm_source=chatgpt.com" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> Access Course
+        </a>
+    </div>
+</div>
+
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+    <h3 class="resource-title">Great Learning Academy</h3>
+    <p class="resource-description">Free certification courses in tech, business, and more.</p>
+    <div class="resource-actions">
+        <a href="https://www.mygreatlearning.com/academy?utm_source=chatgpt.com" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> Access Course
+        </a>
+    </div>
+</div>
+
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+    <h3 class="resource-title">Simplilearn SkillUp</h3>
+    <p class="resource-description">Free self-paced courses to build in-demand tech skills.</p>
+    <div class="resource-actions">
+        <a href="https://www.simplilearn.com/skillup-free-online-courses?utm_source=chatgpt.com" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> Access Course
+        </a>
+    </div>
+</div>
+
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+    <h3 class="resource-title">SWAYAM</h3>
+    <p class="resource-description">Government of India platform for free learning and certification.</p>
+    <div class="resource-actions">
+        <a href="https://swayam.gov.in/explorer" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> Access Course
+        </a>
+    </div>
+</div>
+
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+    <h3 class="resource-title">NPTEL</h3>
+    <p class="resource-description">Online learning platform by IITs and IISc under MHRD.</p>
+    <div class="resource-actions">
+        <a href="https://nptel.ac.in/courses" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> Access Course
+        </a>
+    </div>
+</div>
+
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+    <h3 class="resource-title">Skill India Digital Hub (SIDH)</h3>
+    <p class="resource-description">Free skilling platform by the Government of India.</p>
+    <div class="resource-actions">
+        <a href="https://www.skillindiadigital.gov.in/courses?utm_source=chatgpt.com" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> Access Course
+        </a>
+    </div>
+</div>
+
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+    <h3 class="resource-title">Class Central</h3>
+    <p class="resource-description">Aggregator for free courses with certificates from top platforms.</p>
+    <div class="resource-actions">
+        <a href="https://www.classcentral.com/collection/free-certificates?utm_source=chatgpt.com" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> Access Course
+        </a>
+    </div>
+</div>
+
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+    <h3 class="resource-title">Netcad</h3>
+    <p class="resource-description">Training and certification in GIS, CAD, and infrastructure design tools.</p>
+    <div class="resource-actions">
+        <a href="https://www.netcad.com/" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> Access Course
+        </a>
+    </div>
+</div>
+
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+    <h3 class="resource-title">EC-Council</h3>
+    <p class="resource-description">Global leader in cybersecurity certification and training.</p>
+    <div class="resource-actions">
+        <a href="https://www.eccouncil.org/" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> Access Course
+        </a>
+    </div>
+</div>  
+    </div>
+    
+<!-- books -->
+
+    <div class="resource-tab-content" id="tools">
+        <!-- Book 1 -->
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-book-open"></i></div>
+    <h3 class="resource-title">The Shellcoder's Handbook</h3>
+    <p class="resource-description">Discovering and exploiting security holes in software and systems.</p>
+    <div class="resource-actions">
+        <a href="https://drive.google.com/file/d/1-NYAsRSkC2fBlsljrivR4Y4k9J0H5llN/view" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> View Book
+        </a>
+    </div>
+</div>
+
+<!-- Book 2 -->
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-book-open"></i></div>
+    <h3 class="resource-title">The Hardware Hacker</h3>
+    <p class="resource-description">Adventures in making and breaking hardware components.</p>
+    <div class="resource-actions">
+        <a href="https://drive.google.com/file/d/1-JNoymxOVE_qtZG9rIlL01FpZTpueQWN/view" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> View Book
+        </a>
+    </div>
+</div>
+
+<!-- Book 3 -->
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-book-open"></i></div>
+    <h3 class="resource-title">The BlackArch Linux Guide</h3>
+    <p class="resource-description">Comprehensive guide to the BlackArch penetration testing distribution.</p>
+    <div class="resource-actions">
+        <a href="https://drive.google.com/file/d/1QJH9VY3CnP7HivhhasI-KC5OcnZUz4Ee/view" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> View Book
+        </a>
+    </div>
+</div>
+
+<!-- Book 4 -->
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-book-open"></i></div>
+    <h3 class="resource-title">Social Engineering: The Art of Human Hacking</h3>
+    <p class="resource-description">Mastering the psychological aspects of security penetration.</p>
+    <div class="resource-actions">
+        <a href="https://drive.google.com/file/d/1-3h3evsjQunFwgtEIklFkSJMsdWcQIMd/view" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> View Book
+        </a>
+    </div>
+</div>
+
+<!-- Book 5 -->
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-book-open"></i></div>
+    <h3 class="resource-title">Rootkits and Bootkits</h3>
+    <p class="resource-description">Understanding and defending against low-level malware threats.</p>
+    <div class="resource-actions">
+        <a href="https://drive.google.com/file/d/1-Dc_MSBsawFG0uigxcc4mgM8HzJoj_Sj/view" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> View Book
+        </a>
+    </div>
+</div>
+
+<!-- Book 6 -->
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-book-open"></i></div>
+    <h3 class="resource-title">Reversing: Secrets of Reverse Engineering</h3>
+    <p class="resource-description">Techniques for analyzing software without source code access.</p>
+    <div class="resource-actions">
+        <a href="https://drive.google.com/file/d/1-1p63PR4EZal3nK4_MwOgi-mtALaq7MY/view" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> View Book
+        </a>
+    </div>
+</div>
+
+
+       </div>
+
+    <!--  roadmap -->
+    <div class="resource-tab-content" id="security">
+        
+       <div class="resource-card">
+    <div class="resource-type"><i class="fas fa-shield-alt"></i></div>
+    <h3 class="resource-title">Cybersecurity Career Pathways</h3>
+    <p class="resource-description">Interactive tool showing cybersecurity career paths and required skills.</p>
+    <div class="resource-actions">
+        <a href="https://www.cyberseek.org/pathway.html" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> Access Resource
+        </a>
+    </div>
+</div>
+
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-shield-alt"></i></div>
+    <h3 class="resource-title">Infosec Skills Roadmap</h3>
+    <p class="resource-description">Interactive cybersecurity skills roadmap with learning resources.</p>
+    <div class="resource-actions">
+        <a href="https://www.infosecinstitute.com/skills/learning-paths/" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> Access Resource
+        </a>
+    </div>
+</div>
+
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-shield-alt"></i></div>
+    <h3 class="resource-title">OWASP Security Guide</h3>
+    <p class="resource-description">The definitive guide to web application security from OWASP.</p>
+    <div class="resource-actions">
+        <a href="https://owasp.org/www-project-web-security-testing-guide/" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> Access Resource
+        </a>
+    </div>
+</div>
+
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-shield-alt"></i></div>
+    <h3 class="resource-title">Hack The Box</h3>
+    <p class="resource-description">Massive collection of vulnerable machines to practice penetration testing.</p>
+    <div class="resource-actions">
+        <a href="https://www.hackthebox.com/" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> Access Resource
+        </a>
+    </div>
+</div>
+
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-shield-alt"></i></div>
+    <h3 class="resource-title">TryHackMe</h3>
+    <p class="resource-description">Gamified learning platform with guided cybersecurity paths.</p>
+    <div class="resource-actions">
+        <a href="https://tryhackme.com/" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> Access Resource
+        </a>
+    </div>
+</div>
+
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-shield-alt"></i></div>
+    <h3 class="resource-title">MITRE ATT&CK</h3>
+    <p class="resource-description">Globally-accessible knowledge base of adversary tactics and techniques.</p>
+    <div class="resource-actions">
+        <a href="https://attack.mitre.org/" class="cyber-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> Access Resource
+        </a>
+    </div>
+</div>
+
+
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="resources.html" class="cyber-btn cyber-btn-primary">View All Resources</a>
+    </div>
+</section>
+
+    <!-- Connect With Us Section -->
+    <section class="connect-section" id="connect">
+        <div class="cyber-container">
+            <h2 class="section-title">CONNECT WITH US</h2>
+            <p style="max-width: 600px; margin: 0 auto 30px; color: var(--text-dim);">Join our growing community across these platforms to stay updated and connected.</p>
+            <div class="social-icons">
+                
+                <a href="https://github.com/AZMBLERS" class="social-icon github" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=azmblers@gmail.com&su=Contact%20from%20web%20site&body=Hello Azmblers Team,%0D%0A%0D%0AI’m reaching out through your website and would love to discuss a possible collaboration.%0D%0A%0D%0ALooking forward to hearing from you!" class="social-icon mail" title="Mail">
+                <i class="fas fa-envelope"></i></a>
+                <a href="https://discord.gg/2DqUmWP6" class="social-icon discord" title="Discord"><i class="fab fa-discord"></i></a>
+                <a href="https://www.instagram.com/a.z.m.b.l/?hl=en" class="social-icon instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </section>
+
+
+    <!--Footer -->
+    <footer class="cyber-footer">
+        <div class="cyber-container">
+            <div class="cyber-footer-grid">
+                <div>
+                    <h3>AZMBL</h3>
+                    <p>Advancing technology through community collaboration and education.</p>
+                    <div class="cyber-social">
+                        <a href="https://github.com/AZMBLERS" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=azmblers@gmail.com&su=Contact%20from%20web%20site&body=Hello Azmblers Team,%0D%0A%0D%0AI’m reaching out through your website and would love to discuss a possible collaboration.%0D%0A%0D%0ALooking forward to hearing from you!" class="social-icon mail" title="Mail">
+                        <i class="fas fa-envelope"></i></a>
+                        <a href="https://discord.gg/2DqUmWP6" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="https://www.instagram.com/a.z.m.b.l/?hl=en"title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>TOPICS</h3>
+                    <ul>
+                        <li><a href="#">ETHICAL HACKING</a></li>
+                        <li><a href="#">WEB DEVELOPMENT</a></li>
+                        <li><a href="#">SOFTWARE ENGINEERING</a></li>
+                        <li><a href="#">TECH TRENDS</a></li>
+                        <li><a href="#">STARTUPS</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3>COMMUNITY</h3>
+                    <ul>
+                        <li><a href="#projects">PROJECTS</a></li>
+                        <li><a href="resources.html">RESOURCES</a></li>
+                        <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=azmblers@gmail.com&su=Contact%20from%20web%20site&body=Hello Azmblers Team,%0D%0A%0D%0AI’m reaching out through your website and would love to discuss a possible collaboration.%0D%0A%0D%0ALooking forward to hearing from you!">COLLABORATIONS</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="cyber-copyright">
+                <p>&copy; 2024 AZMBL. All rights reserved. Ethical hacking content is for legal and educational purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mainMenu = document.getElementById('mainMenu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+        mainMenu.classList.toggle('active');
+        mobileMenuBtn.innerHTML = mainMenu.classList.contains('active') ? 
+            '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Smooth scrolling only for internal links
+    document.querySelectorAll('a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // Only handle internal navigation links
+            if(href && href.startsWith('#')) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                if(mainMenu.classList.contains('active')) {
+                    mainMenu.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+                
+                // Skip if it's just #
+                if(href === '#') return;
+                
+                // Scroll to target
+                const targetElement = document.querySelector(href);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+            // All other links (external) will work normally
+        });
+    });
+    
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        if(window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+    
+    // Back to top button
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        if(window.scrollY > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+    
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Resource tabs
+    const resourceTabs = document.querySelectorAll('.resource-tab');
+    resourceTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.resource-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.resource-tab-content').forEach(c => c.classList.remove('active'));
+            
+            tab.classList.add('active');
+            const tabId = tab.getAttribute('data-tab');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+    
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    darkModeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+        
+        if(document.body.classList.contains('light-mode')) {
+            document.documentElement.style.setProperty('--dark-bg', '#f5f5f7');
+            document.documentElement.style.setProperty('--darker-bg', '#e0e0e0');
+            document.documentElement.style.setProperty('--card-bg', '#ffffff');
+            document.documentElement.style.setProperty('--text-light', '#333333');
+            document.documentElement.style.setProperty('--text-dim', '#666666');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            document.documentElement.style.setProperty('--dark-bg', '#0a0a12');
+            document.documentElement.style.setProperty('--darker-bg', '#050508');
+            document.documentElement.style.setProperty('--card-bg', '#11111a');
+            document.documentElement.style.setProperty('--text-light', '#e0e0e0');
+            document.documentElement.style.setProperty('--text-dim', '#a0a0a0');
+            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+    });
+    
+    // Newsletter form submission
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if(newsletterForm) {
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const emailInput = newsletterForm.querySelector('input[type="email"]');
+            alert(`Thank you for subscribing with ${emailInput.value}! You'll receive our next newsletter.`);
+            emailInput.value = '';
+        });
+    }
+</script>
+</body>
+</html>

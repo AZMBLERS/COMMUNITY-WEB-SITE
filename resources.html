@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AZMBL | COMMUNITY RESOURCES</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Root Variables */
+        :root {
+            --neon-blue: #0ff0fc;
+            --neon-purple: #9600ff;
+            --dark-bg: #0a0a12;
+            --darker-bg: #050508;
+            --card-bg: #11111a;
+            --text-light: #e0e0e0;
+            --text-dim: #a0a0a0;
+        }
+        
+        /* Body Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            padding-top: 80px; /* Space for fixed header */
+        }
+        
+        /* Container */
+        .cyber-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        .cyber-header {
+            background-color: var(--darker-bg);
+            border-bottom: 1px solid rgba(15, 240, 252, 0.1);
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .cyber-header.scrolled {
+            padding: 10px 0;
+            background-color: rgba(5, 5, 8, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Navigation */
+        .cyber-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cyber-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--neon-blue);
+            text-decoration: none;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .cyber-logo i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .cyber-menu {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .cyber-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .cyber-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .cyber-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--neon-blue);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .resources-hero {
+            padding: 60px 0;
+            background: linear-gradient(to bottom, var(--darker-bg), var(--dark-bg));
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .resources-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(15, 240, 252, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(150, 0, 255, 0.05) 0%, transparent 50%);
+            z-index: 0;
+        }
+        
+        .resources-hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+            position: relative;
+        }
+        
+        .resources-hero p {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+        
+        /* Main Content */
+        .resources-main {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .resource-category {
+            margin-bottom: 60px;
+        }
+        
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .resource-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            border: 1px solid rgba(15, 240, 252, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(15, 240, 252, 0.1);
+            border-color: rgba(15, 240, 252, 0.3);
+        }
+        
+        .resource-type {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: var(--neon-purple);
+        }
+        
+        .resource-title {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-blue);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            padding-right: 30px;
+        }
+        
+        .resource-description {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .resource-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .resource-provider {
+            display: flex;
+            align-items: center;
+        }
+        
+        .resource-provider img {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        
+        .resource-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 15px;
+            background: rgba(15, 240, 252, 0.1);
+            color: var(--neon-blue);
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            flex: 1;
+            justify-content: center;
+        }
+        
+        .resource-link:hover {
+            background: rgba(15, 240, 252, 0.2);
+        }
+        
+        .resource-link i {
+            margin-right: 5px;
+        }
+        
+        /* Footer */
+        .cyber-footer {
+            background-color: var(--darker-bg);
+            padding: 50px 0 20px;
+            border-top: 1px solid rgba(15, 240, 252, 0.1);
+        }
+        
+        .cyber-footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .cyber-footer h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-blue);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .cyber-footer ul {
+            list-style: none;
+        }
+        
+        .cyber-footer ul li {
+            margin-bottom: 10px;
+        }
+        
+        .cyber-footer ul li a {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .cyber-footer ul li a:hover {
+            color: var(--neon-blue);
+        }
+        
+        .cyber-social {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .cyber-social a {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 240, 252, 0.05);
+        }
+        
+        .cyber-social a:hover {
+            color: var(--neon-blue);
+            background: rgba(15, 240, 252, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .cyber-copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(15, 240, 252, 0.1);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+            
+            .resources-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cyber-menu {
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--darker-bg);
+                padding: 20px;
+                gap: 15px;
+                border-bottom: 1px solid rgba(15, 240, 252, 0.1);
+            }
+            
+            .cyber-menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="cyber-header" id="header">
+        <div class="cyber-container">
+            <nav class="cyber-nav">
+                <a href="index.html" class="cyber-logo"><i class="fas fa-code"></i>AZMBL</a>
+                <div class="cyber-menu" id="mainMenu">
+                    <a href="index.html">HOME</a>
+                    <a href="index.html#topics">TOPICS</a>
+                    <a href="index.html#projects">PROJECTS</a>
+                    <a href="resources.html">RESOURCES</a>
+                    <a href="index.html#connect">CONNECT</a>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="resources-hero">
+        <div class="cyber-container">
+            <h1>COMMUNITY RESOURCES</h1>
+            <p>Curated collection of free courses, books, roadmaps, and tools to accelerate your tech journey.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="resources-main cyber-container">
+<!-- Free Courses Section -->
+<section class="resource-category">
+    <h2 class="section-title">FREE COURSES</h2>
+    <div class="resource-grid">
+        
+        <!-- FreeCodeCamp -->
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+            <h3 class="resource-title">FreeCodeCamp Curriculum</h3>
+            <div class="resource-meta">
+                <span class="resource-provider"><img src="https://www.freecodecamp.org/favicon-32x32.png" alt="FCC"> FreeCodeCamp</span>
+                <span><i class="fas fa-clock"></i> 3000+ hours</span>
+            </div>
+            <p class="resource-description">Covers JavaScript, Python, C++, SQL, Bash, HTML/CSS. Includes certifications like Responsive Web Design, JavaScript Algorithms, Front/Back End Development, and more.</p>
+            <a href="https://www.freecodecamp.org/learn/" class="resource-link" target="_blank">Access Course <i class="fas fa-external-link-alt"></i></a>
+        </div>
+
+        <!-- Coursera -->
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+    <h3 class="resource-title">Coursera</h3>
+    <div class="resource-meta">
+        <span class="resource-provider"><img src="https://www.coursera.org/favicon.ico" alt="Coursera"> Coursera</span>
+    </div>
+    <p class="resource-description">Explore free and paid courses from top universities and companies. Get certificates upon completion.</p>
+    <a href="https://www.coursera.org/courses?query=free&utm_source=chatgpt.com" class="resource-link" target="_blank">Access Courses <i class="fas fa-external-link-alt"></i></a>
+</div>
+
+<!-- Alison -->
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+    <h3 class="resource-title">Alison</h3>
+    <div class="resource-meta">
+        <span class="resource-provider"><img src="https://alison.com/favicon.ico" alt="Alison"> Alison</span>
+    </div>
+    <p class="resource-description">Free online courses with certification options in various domains including IT, business, and health.</p>
+    <a href="https://alison.com/?utm_source=chatgpt.com" class="resource-link" target="_blank">Access Courses <i class="fas fa-external-link-alt"></i></a>
+</div>
+
+<!-- Great Learning Academy -->
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+    <h3 class="resource-title">Great Learning Academy</h3>
+    <div class="resource-meta">
+        <span class="resource-provider"><img src="https://www.mygreatlearning.com/favicon.ico" alt="Great Learning"> Great Learning</span>
+    </div>
+    <p class="resource-description">Offers self-paced courses in tech and business skills with downloadable certificates.</p>
+    <a href="https://www.mygreatlearning.com/academy?utm_source=chatgpt.com" class="resource-link" target="_blank">Access Courses <i class="fas fa-external-link-alt"></i></a>
+</div>
+
+<!-- Simplilearn SkillUp -->
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+    <h3 class="resource-title">Simplilearn's SkillUp</h3>
+    <div class="resource-meta">
+        <span class="resource-provider"><img src="https://www.simplilearn.com/favicon.ico" alt="Simplilearn"> Simplilearn</span>
+    </div>
+    <p class="resource-description">Free courses in tech, digital marketing, and project management with SkillUp completion certificates.</p>
+    <a href="https://www.simplilearn.com/skillup-free-online-courses?utm_source=chatgpt.com" class="resource-link" target="_blank">Access Courses <i class="fas fa-external-link-alt"></i></a>
+</div>
+
+<!-- SWAYAM -->
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+    <h3 class="resource-title">SWAYAM</h3>
+    <div class="resource-meta">
+        <span class="resource-provider"><img src="https://swayam.gov.in/favicon.ico" alt="SWAYAM"> Government of India</span>
+    </div>
+    <p class="resource-description">Government platform offering free courses across academic streams. Certification available.</p>
+    <a href="https://swayam.gov.in/explorer" class="resource-link" target="_blank">Access Courses <i class="fas fa-external-link-alt"></i></a>
+</div>
+
+<!-- NPTEL -->
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+    <h3 class="resource-title">NPTEL</h3>
+    <div class="resource-meta">
+        <span class="resource-provider"><img src="https://nptel.ac.in/favicon.ico" alt="NPTEL"> NPTEL</span>
+    </div>
+    <p class="resource-description">Engineering and science courses from top IITs and IISc, with optional certification exams.</p>
+    <a href="https://nptel.ac.in/courses" class="resource-link" target="_blank">Access Courses <i class="fas fa-external-link-alt"></i></a>
+</div>
+
+<!-- Skill India Digital Hub (SIDH) -->
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+    <h3 class="resource-title">Skill India Digital Hub (SIDH)</h3>
+    <div class="resource-meta">
+        <span class="resource-provider"><img src="https://www.skillindiadigital.gov.in/assets/img/favicon.png" alt="Skill India"> SIDH</span>
+    </div>
+    <p class="resource-description">Government-backed free courses on job-ready skills across domains with certification.</p>
+    <a href="https://www.skillindiadigital.gov.in/courses?utm_source=chatgpt.com" class="resource-link" target="_blank">Access Courses <i class="fas fa-external-link-alt"></i></a>
+</div>
+
+<!-- Class Central -->
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+    <h3 class="resource-title">Class Central</h3>
+    <div class="resource-meta">
+        <span class="resource-provider"><img src="https://www.classcentral.com/favicon.ico" alt="Class Central"> Class Central</span>
+    </div>
+    <p class="resource-description">Aggregator of free courses with verified certificates from top institutions globally.</p>
+    <a href="https://www.classcentral.com/collection/free-certificates?utm_source=chatgpt.com" class="resource-link" target="_blank">Access Courses <i class="fas fa-external-link-alt"></i></a>
+</div>
+
+<!-- Netcad & EC-Council -->
+<div class="resource-card">
+    <div class="resource-type"><i class="fas fa-graduation-cap"></i></div>
+    <h3 class="resource-title">Netcad & EC-Council</h3>
+    <div class="resource-meta">
+        <span class="resource-provider"><img src="https://www.eccouncil.org/favicon.ico" alt="EC-Council"> Netcad / EC-Council</span>
+    </div>
+    <p class="resource-description">Professional training and certification programs in cybersecurity, ethical hacking, and network defense.</p>
+    <a href="https://www.eccouncil.org/" class="resource-link" target="_blank">Visit EC-Council <i class="fas fa-external-link-alt"></i></a>
+</div>
+    </div>
+</section>
+
+<!-- Linux Section -->
+        <section class="resource-category">
+            <h2 class="section-title">LINUX & SYSTEM ADMIN</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-type"><i class="fas fa-server"></i></div>
+                    <h3 class="resource-title">Linux Journey</h3>
+                    <div class="resource-meta">
+                        <span class="resource-provider"><img src="https://linuxjourney.com/favicon.ico" alt="Linux Journey"> Open Source</span>
+                        <span><i class="fas fa-road"></i> Learning Path</span>
+                    </div>
+                    <p class="resource-description">A site dedicated to making learning Linux fun and easy with interactive lessons.</p>
+                    <a href="https://linuxjourney.com/" class="resource-link" target="_blank">Access Resource <i class="fas fa-external-link-alt"></i></a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-type"><i class="fas fa-server"></i></div>
+                    <h3 class="resource-title">The Linux Command Line</h3>
+                    <div class="resource-meta">
+                        <span class="resource-provider"><img src="https://linuxcommand.org/favicon.ico" alt="Linux Command"> No Starch Press</span>
+                        <span><i class="fas fa-book"></i> Free Book</span>
+                    </div>
+                    <p class="resource-description">Complete book available for free that teaches Linux command line basics.</p>
+                    <a href="https://linuxcommand.org/tlcl.php" class="resource-link" target="_blank">Access Resource <i class="fas fa-external-link-alt"></i></a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-type"><i class="fas fa-server"></i></div>
+                    <h3 class="resource-title">Explain Shell</h3>
+                    <div class="resource-meta">
+                        <span class="resource-provider"><img src="https://explainshell.com/favicon.ico" alt="Explain Shell"> Open Source</span>
+                        <span><i class="fas fa-terminal"></i> Tool</span>
+                    </div>
+                    <p class="resource-description">Paste a Linux command to see help text that matches each argument.</p>
+                    <a href="https://explainshell.com/" class="resource-link" target="_blank">Access Resource <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Books Section -->
+<section class="resource-category">
+    <h2 class="section-title">SECURITY & HACKING BOOKS</h2>
+    <div class="resource-grid">
+        <!-- Book 1 -->
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-book-open"></i></div>
+            <h3 class="resource-title">The Shellcoder's Handbook</h3>
+            <div class="resource-meta">
+                <span class="resource-provider"><img src="https://drive.google.com/favicon.ico" alt="Google Drive"> AZMBL</span>
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+            </div>
+            <p class="resource-description">Discovering and exploiting security holes in software and systems.</p>
+            <div class="resource-actions">
+                <a href="https://drive.google.com/uc?export=download&id=1-NYAsRSkC2fBlsljrivR4Y4k9J0H5llN" class="resource-link" download>
+                    <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://drive.google.com/file/d/1-NYAsRSkC2fBlsljrivR4Y4k9J0H5llN/view" class="resource-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View
+                </a>
+            </div>
+        </div>
+        
+        <!-- Book 2 -->
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-book-open"></i></div>
+            <h3 class="resource-title">The Hardware Hacker</h3>
+            <div class="resource-meta">
+                <span class="resource-provider"><img src="https://drive.google.com/favicon.ico" alt="Google Drive"> AZMBL</span>
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+            </div>
+            <p class="resource-description">Adventures in making and breaking hardware components.</p>
+            <div class="resource-actions">
+                <a href="https://drive.google.com/uc?export=download&id=1-JNoymxOVE_qtZG9rIlL01FpZTpueQWN" class="resource-link" download>
+                    <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://drive.google.com/file/d/1-JNoymxOVE_qtZG9rIlL01FpZTpueQWN/view" class="resource-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View
+                </a>
+            </div>
+        </div>
+        
+        <!-- Book 3 -->
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-book-open"></i></div>
+            <h3 class="resource-title">The BlackArch Linux Guide</h3>
+            <div class="resource-meta">
+                <span class="resource-provider"><img src="https://drive.google.com/favicon.ico" alt="Google Drive"> AZMBL</span>
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+            </div>
+            <p class="resource-description">Comprehensive guide to the BlackArch penetration testing distribution.</p>
+            <div class="resource-actions">
+                <a href="https://drive.google.com/uc?export=download&id=1QJH9VY3CnP7HivhhasI-KC5OcnZUz4Ee" class="resource-link" download>
+                    <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://drive.google.com/file/d/1QJH9VY3CnP7HivhhasI-KC5OcnZUz4Ee/view" class="resource-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View
+                </a>
+            </div>
+        </div>
+        
+        <!-- Book 4 -->
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-book-open"></i></div>
+            <h3 class="resource-title">Social Engineering: The Art of Human Hacking</h3>
+            <div class="resource-meta">
+                <span class="resource-provider"><img src="https://drive.google.com/favicon.ico" alt="Google Drive"> AZMBL</span>
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+            </div>
+            <p class="resource-description">Mastering the psychological aspects of security penetration.</p>
+            <div class="resource-actions">
+                <a href="https://drive.google.com/uc?export=download&id=1-3h3evsjQunFwgtEIklFkSJMsdWcQIMd" class="resource-link" download>
+                    <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://drive.google.com/file/d/1-3h3evsjQunFwgtEIklFkSJMsdWcQIMd/view" class="resource-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View
+                </a>
+            </div>
+        </div>
+        
+        <!-- Book 5 -->
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-book-open"></i></div>
+            <h3 class="resource-title">Rootkits and Bootkits</h3>
+            <div class="resource-meta">
+                <span class="resource-provider"><img src="https://drive.google.com/favicon.ico" alt="Google Drive"> AZMBL</span>
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+            </div>
+            <p class="resource-description">Understanding and defending against low-level malware threats.</p>
+            <div class="resource-actions">
+                <a href="https://drive.google.com/uc?export=download&id=1-Dc_MSBsawFG0uigxcc4mgM8HzJoj_Sj" class="resource-link" download>
+                    <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://drive.google.com/file/d/1-Dc_MSBsawFG0uigxcc4mgM8HzJoj_Sj/view" class="resource-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View
+                </a>
+            </div>
+        </div>
+        
+        <!-- Book 6 -->
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-book-open"></i></div>
+            <h3 class="resource-title">Reversing: Secrets of Reverse Engineering</h3>
+            <div class="resource-meta">
+                <span class="resource-provider"><img src="https://drive.google.com/favicon.ico" alt="Google Drive"> AZMBL</span>
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+            </div>
+            <p class="resource-description">Techniques for analyzing software without source code access.</p>
+            <div class="resource-actions">
+                <a href="https://drive.google.com/uc?export=download&id=1-1p63PR4EZal3nK4_MwOgi-mtALaq7MY" class="resource-link" download>
+                    <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://drive.google.com/file/d/1-1p63PR4EZal3nK4_MwOgi-mtALaq7MY/view" class="resource-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View
+                </a>
+            </div>
+        </div>
+        
+        <!-- Book 7 -->
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-book-open"></i></div>
+            <h3 class="resource-title">Reverse Engineering for Beginners</h3>
+            <div class="resource-meta">
+                <span class="resource-provider"><img src="https://drive.google.com/favicon.ico" alt="Google Drive"> AZMBL</span>
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+            </div>
+            <p class="resource-description">Introductory guide to software reverse engineering techniques.</p>
+            <div class="resource-actions">
+                <a href="https://drive.google.com/uc?export=download&id=1-959z1JDqRZjFYHxbiD2SH32BNvVEbcR" class="resource-link" download>
+                    <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://drive.google.com/file/d/1-959z1JDqRZjFYHxbiD2SH32BNvVEbcR/view" class="resource-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View
+                </a>
+            </div>
+        </div>
+        
+        <!-- Book 8 -->
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-book-open"></i></div>
+            <h3 class="resource-title">Practical Malware Analysis</h3>
+            <div class="resource-meta">
+                <span class="resource-provider"><img src="https://drive.google.com/favicon.ico" alt="Google Drive"> AZMBL</span>
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+            </div>
+            <p class="resource-description">Hands-on guide to dissecting malicious software.</p>
+            <div class="resource-actions">
+                <a href="https://drive.google.com/uc?export=download&id=1-U9GO_jRVv2ddNYepVGSonxHPWl8dvNe" class="resource-link" download>
+                    <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://drive.google.com/file/d/1-U9GO_jRVv2ddNYepVGSonxHPWl8dvNe/view" class="resource-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View
+                </a>
+            </div>
+        </div>
+        
+        <!-- Book 9 -->
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-book-open"></i></div>
+            <h3 class="resource-title">Metasploit: A Penetration Tester's Guide</h3>
+            <div class="resource-meta">
+                <span class="resource-provider"><img src="https://drive.google.com/favicon.ico" alt="Google Drive"> AZMBL</span>
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+            </div>
+            <p class="resource-description">Mastering the Metasploit Framework for security testing.</p>
+            <div class="resource-actions">
+                <a href="https://drive.google.com/uc?export=download&id=1gbpbSDncHxQr3-2jiZbWkKfjDdWBtOqn" class="resource-link" download>
+                    <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://drive.google.com/file/d/1gbpbSDncHxQr3-2jiZbWkKfjDdWBtOqn/view" class="resource-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View
+                </a>
+            </div>
+        </div>
+        
+        <!-- Book 10 -->
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-book-open"></i></div>
+            <h3 class="resource-title">Linux Commands Handbook</h3>
+            <div class="resource-meta">
+                <span class="resource-provider"><img src="https://drive.google.com/favicon.ico" alt="Google Drive"> AZMBL</span>
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+            </div>
+            <p class="resource-description">Essential Linux commands for system administration.</p>
+            <div class="resource-actions">
+                <a href="https://drive.google.com/uc?export=download&id=1NPOtsZ_2m62mP4xvxT662MoacaPV1JvU" class="resource-link" download>
+                    <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://drive.google.com/file/d/1NPOtsZ_2m62mP4xvxT662MoacaPV1JvU/view" class="resource-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View
+                </a>
+            </div>
+        </div>
+        
+        <!-- Book 11 -->
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-book-open"></i></div>
+            <h3 class="resource-title">Linux Basics for Hackers</h3>
+            <div class="resource-meta">
+                <span class="resource-provider"><img src="https://drive.google.com/favicon.ico" alt="Google Drive"> AZMBL</span>
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+            </div>
+            <p class="resource-description">Getting started with Linux for penetration testing.</p>
+            <div class="resource-actions">
+                <a href="https://drive.google.com/uc?export=download&id=1-8QDO2pK0umRJzjgF8cYg28JQtWm7FgW" class="resource-link" download>
+                    <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://drive.google.com/file/d/1-8QDO2pK0umRJzjgF8cYg28JQtWm7FgW/view" class="resource-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View
+                </a>
+            </div>
+        </div>
+        
+        <!-- Book 12 -->
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-book-open"></i></div>
+            <h3 class="resource-title">iOS Application Security</h3>
+            <div class="resource-meta">
+                <span class="resource-provider"><img src="https://drive.google.com/favicon.ico" alt="Google Drive"> AZMBL</span>
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+            </div>
+            <p class="resource-description">Security assessment techniques for iOS applications.</p>
+            <div class="resource-actions">
+                <a href="https://drive.google.com/uc?export=download&id=1MijJgAaxurvaERenmmb8PzWDrIApZ7GD" class="resource-link" download>
+                    <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://drive.google.com/file/d/1MijJgAaxurvaERenmmb8PzWDrIApZ7GD/view" class="resource-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View
+                </a>
+            </div>
+        </div>
+        
+        <!-- Book 13 -->
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-book-open"></i></div>
+            <h3 class="resource-title">How To Hack Like a Pornstar</h3>
+            <div class="resource-meta">
+                <span class="resource-provider"><img src="https://drive.google.com/favicon.ico" alt="Google Drive"> AZMBL</span>
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+            </div>
+            <p class="resource-description">Step-by-step process for breaking into systems (educational purposes only).</p>
+            <div class="resource-actions">
+                <a href="https://drive.google.com/uc?export=download&id=1-oZ3OxAYtlw4_eKwQr9iO23Nm4qrWFz7" class="resource-link" download>
+                    <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://drive.google.com/file/d/1-oZ3OxAYtlw4_eKwQr9iO23Nm4qrWFz7/view" class="resource-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View
+                </a>
+            </div>
+        </div>
+        
+        <!-- Book 14 -->
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-book-open"></i></div>
+            <h3 class="resource-title">Embedded Systems Security</h3>
+            <div class="resource-meta">
+                <span class="resource-provider"><img src="https://drive.google.com/favicon.ico" alt="Google Drive"> AZMBL</span>
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+            </div>
+            <p class="resource-description">Security considerations for embedded systems development.</p>
+            <div class="resource-actions">
+                <a href="https://drive.google.com/uc?export=download&id=1-_1PrCVWVFqmtOeCBVVNLudaIhNEhNHH" class="resource-link" download>
+                    <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://drive.google.com/file/d/1-_1PrCVWVFqmtOeCBVVNLudaIhNEhNHH/view" class="resource-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View
+                </a>
+            </div>
+        </div>
+        
+        <!-- Book 15 -->
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-book-open"></i></div>
+            <h3 class="resource-title">CEHv10 Module 09: Social Engineering</h3>
+            <div class="resource-meta">
+                <span class="resource-provider"><img src="https://drive.google.com/favicon.ico" alt="Google Drive"> AZMBL</span>
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+            </div>
+            <p class="resource-description">Official CEH module on social engineering techniques.</p>
+            <div class="resource-actions">
+                <a href="https://drive.google.com/uc?export=download&id=1XsPXPGGr8FamuHPycciaGFjmCnRVapUE" class="resource-link" download>
+                    <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://drive.google.com/file/d/1XsPXPGGr8FamuHPycciaGFjmCnRVapUE/view" class="resource-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View
+                </a>
+            </div>
+        </div>
+        
+        <!-- Book 16 -->
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-book-open"></i></div>
+            <h3 class="resource-title">CEHv10 Module 05: Vulnerability Analysis</h3>
+            <div class="resource-meta">
+                <span class="resource-provider"><img src="https://drive.google.com/favicon.ico" alt="Google Drive"> AZMBL</span>
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+            </div>
+            <p class="resource-description">Official CEH module on vulnerability assessment techniques.</p>
+            <div class="resource-actions">
+                <a href="https://drive.google.com/uc?export=download&id=1BYTuVzNIAQx6-0qT6dcBm4wV47kw1g1W" class="resource-link" download>
+                    <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://drive.google.com/file/d/1BYTuVzNIAQx6-0qT6dcBm4wV47kw1g1W/view" class="resource-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View
+                </a>
+            </div>
+        </div>
+        
+        <!-- Book 17 -->
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-book-open"></i></div>
+            <h3 class="resource-title">Begin Ethical Hacking with Python</h3>
+            <div class="resource-meta">
+                <span class="resource-provider"><img src="https://drive.google.com/favicon.ico" alt="Google Drive"> AZMBL</span>
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+            </div>
+            <p class="resource-description">Using Python for ethical hacking and penetration testing.</p>
+            <div class="resource-actions">
+                <a href="https://drive.google.com/uc?export=download&id=12w6iKWutnjWJKiwef_XCpEGzaUK0IBfn" class="resource-link" download>
+                    <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://drive.google.com/file/d/12w6iKWutnjWJKiwef_XCpEGzaUK0IBfn/view" class="resource-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View
+                </a>
+            </div>
+        </div>
+        
+        <!-- Book 18 -->
+        <div class="resource-card">
+            <div class="resource-type"><i class="fas fa-book-open"></i></div>
+            <h3 class="resource-title">Advanced Penetration Testing</h3>
+            <div class="resource-meta">
+                <span class="resource-provider"><img src="https://drive.google.com/favicon.ico" alt="Google Drive"> AZMBL</span>
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+            </div>
+            <p class="resource-description">Advanced techniques for hacking and penetration testing.</p>
+            <div class="resource-actions">
+                <a href="https://drive.google.com/uc?export=download&id=12MbQ78K_LvSBtJWuf3bJMpB-0WnCYqUt" class="resource-link" download>
+                    <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://drive.google.com/file/d/12MbQ78K_LvSBtJWuf3bJMpB-0WnCYqUt/view" class="resource-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Cybersecurity Roadmap Section -->
+        <section class="resource-category">
+            <h2 class="section-title">CYBERSECURITY ROADMAP</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-type"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="resource-title">Cybersecurity Career Pathways</h3>
+                    <div class="resource-meta">
+                        <span class="resource-provider"><img src="https://www.cyberseek.org/favicon.ico" alt="Cyberseek"> Cyberseek/NIST</span>
+                        <span><i class="fas fa-road"></i> Career Guide</span>
+                    </div>
+                    <p class="resource-description">Interactive tool showing cybersecurity career paths and required skills.</p>
+                    <a href="https://www.cyberseek.org/pathway.html" class="resource-link" target="_blank">Access Resource <i class="fas fa-external-link-alt"></i></a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-type"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="resource-title">Infosec Skills Roadmap</h3>
+                    <div class="resource-meta">
+                        <span class="resource-provider"><img src="https://www.infosecinstitute.com/favicon.ico" alt="Infosec"> Infosec Institute</span>
+                        <span><i class="fas fa-map"></i> Interactive Map</span>
+                    </div>
+                    <p class="resource-description">Interactive cybersecurity skills roadmap with learning resources.</p>
+                    <a href="https://www.infosecinstitute.com/skills/learning-paths/" class="resource-link" target="_blank">Access Resource <i class="fas fa-external-link-alt"></i></a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-type"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="resource-title">OWASP Security Guide</h3>
+                    <div class="resource-meta">
+                        <span class="resource-provider"><img src="https://owasp.org/favicon.ico" alt="OWASP"> OWASP</span>
+                        <span><i class="fas fa-book"></i> Comprehensive</span>
+                    </div>
+                    <p class="resource-description">The definitive guide to web application security from OWASP.</p>
+                    <a href="https://owasp.org/www-project-web-security-testing-guide/" class="resource-link" target="_blank">Access Resource <i class="fas fa-external-link-alt"></i></a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-type"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="resource-title">Hack The Box</h3>
+                    <div class="resource-meta">
+                        <span class="resource-provider"><img src="https://www.hackthebox.com/favicon.ico" alt="HTB"> Hack The Box</span>
+                        <span><i class="fas fa-gamepad"></i> Hands-on Labs</span>
+                    </div>
+                    <p class="resource-description">Massive collection of vulnerable machines to practice penetration testing.</p>
+                    <a href="https://www.hackthebox.com/" class="resource-link" target="_blank">Access Resource <i class="fas fa-external-link-alt"></i></a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-type"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="resource-title">TryHackMe</h3>
+                    <div class="resource-meta">
+                        <span class="resource-provider"><img src="https://tryhackme.com/favicon.ico" alt="TryHackMe"> TryHackMe</span>
+                        <span><i class="fas fa-graduation-cap"></i> Learning Paths</span>
+                    </div>
+                    <p class="resource-description">Gamified learning platform with guided cybersecurity paths.</p>
+                    <a href="https://tryhackme.com/" class="resource-link" target="_blank">Access Resource <i class="fas fa-external-link-alt"></i></a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-type"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="resource-title">MITRE ATT&CK</h3>
+                    <div class="resource-meta">
+                        <span class="resource-provider"><img src="https://attack.mitre.org/favicon.ico" alt="MITRE"> MITRE</span>
+                        <span><i class="fas fa-database"></i> Knowledge Base</span>
+                    </div>
+                    <p class="resource-description">Globally-accessible knowledge base of adversary tactics and techniques.</p>
+                    <a href="https://attack.mitre.org/" class="resource-link" target="_blank">Access Resource <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="cyber-footer">
+        <div class="cyber-container">
+            <div class="cyber-footer-grid">
+                <div>
+                    <h3>AZMBL</h3>
+                    <p>Advancing technology through community collaboration and education.</p>
+                    <div class="cyber-social">
+                        <a href="https://github.com/AZMBLERS" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=azmblers@gmail.com&su=Contact%20from%20web%20site&body=Hello Azmblers Team,%0D%0A%0D%0AI’m reaching out through your website and would love to discuss a possible collaboration.%0D%0A%0D%0ALooking forward to hearing from you!" class="social-icon mail" title="Mail">
+                        <i class="fas fa-envelope"></i></a>
+                        <a href="https://discord.gg/2DqUmWP6" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="https://www.instagram.com/a.z.m.b.l/?hl=en"title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Topics</h3>
+                    <ul>
+                        <li><a href="#">ETHICAL HACKING</a></li>
+                        <li><a href="#">WEB DEVELOPMENT</a></li>
+                        <li><a href="#">SOFTWARE ENGINEERING</a></li>
+                        <li><a href="#">TECH TRENDS</a></li>
+                        <li><a href="#">STARTUPS</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="index.html#projects">Projects</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=azmblers@gmail.com">Collaborations</a></li>
+                        <li><a href="#">Mentorship</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="cyber-copyright">
+                <p>&copy; 2024 AZMBL. All rights reserved. Ethical hacking content is for legal and educational purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainMenu = document.getElementById('mainMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Smooth scrolling for internal links only
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if(mainMenu.classList.contains('active')) {
+                    mainMenu.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if(window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
